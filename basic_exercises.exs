@@ -100,13 +100,46 @@ defmodule Filter do
   end
 end
 
+defmodule MergeArray do
+  def merge(list1 = [head1 | tail1], list2 =[head2 | tail2]) do
+    if (head1 < head2) do
+      [head1 | merge(tail1, list2)]
+    else
+      [head2 | merge(list1, tail2)]
+    end
+  end
+
+  def merge([], list) do
+    list
+  end
+
+  def merge(list, []) do
+    list
+  end
+
+  def merge([], []) do
+    []
+  end
+
+  def test() do
+    IO.inspect(merge([1, 2, 3], [4, 5, 6]))
+    IO.inspect(merge([1, 6, 7], [2, 4, 9]))
+    IO.inspect(merge([1, 2, 3], [1, 2, 3]))
+    IO.inspect(merge([1, 2, 3], [4, 5, 6, 7, 8]))
+    IO.inspect(merge([1, 2, 3], []))
+    IO.inspect(merge([], [4, 5, 6]))
+    IO.inspect(merge([], []))
+  end
+end
+
 defmodule Main do
   def main() do
-    Search.test()
-    Mapping.test()
-    Each.test()
-    Reduce.test()
-    Filter.test()
+    # Search.test()
+    # Mapping.test()
+    # Each.test()
+    # Reduce.test()
+    # Filter.test()
+    MergeArray.test()
   end
 end
 
